@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getEvents } from './api/eventService';
-
+import Event from './components/common/Event';
 function App() {
   const [eventDetails, setEventDetails] = useState(null);
 
@@ -21,22 +21,8 @@ function App() {
         <p>Event Ticketing System</p>
       </header>
       <main>
-      {eventDetails ? (
-        <div className="event">
-          <h3>{eventDetails.name}</h3>
-          <p>Description: {eventDetails.description}</p>
-          <p>Date: {eventDetails.date}</p>
-          {eventDetails.location && (
-            <div>
-              <p>Location Name: {eventDetails.location.name}</p>
-              <p>Location Address: {eventDetails.location.address}</p>
-            </div>
-          )}
-        </div>
-      ) : (
-        <p>Loading event details...</p>
-      )}
-    </main>
+        {eventDetails ? <Event event={eventDetails} /> : <p>Loading...</p>}
+      </main>
     </div>
   );
   }
